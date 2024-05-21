@@ -7,8 +7,7 @@ use crossterm::cursor::{self, DisableBlinking, EnableBlinking};
 use crossterm::ExecutableCommand;
 use std::io::{self, Write, Read};
 
-// modules
-mod menu;
+mod views;
 
 fn terminal_preferences() {
     enable_raw_mode().expect("Failed to enable raw mode");
@@ -45,16 +44,26 @@ impl Drop for TerminalCleanUp {
     }
 }
 
+fn exit() {
+    // exit the program
+    terminal_defaults();
+    std::process::exit(0);
+}
+
 fn main() {
     let _clean_up = TerminalCleanUp;
     terminal_preferences();
 
-    let password = menu::get_password();
+    wait_until_key_pressed();
 
-    println!("You entered: {}", password);
 
-    let help: String = menu::help_menu();
-    println!("{}", help);
+    exit();
+    // let password = menu::get_password();
 
-    menu::initialize_tui();
+    // println!("You entered: {}", password);
+
+    // let help: String = menu::help_menu();
+    // println!("{}", help);
+
+    // menu::initialize_tui();
 }

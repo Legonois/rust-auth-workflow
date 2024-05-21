@@ -7,20 +7,22 @@ use crossterm::cursor;
 use crossterm::ExecutableCommand;
 use std::io::{self, stdout, Read, Write};
 
-struct Position {
-    x: u16,
-    y: u16,
-}
+mod views;
 
-impl Position {
-    fn new(x: u16, y: u16) -> Position {
-        return Position { x, y };
-    }
+// struct Position {
+//     x: u16,
+//     y: u16,
+// }
 
-    fn zeros() -> Position {
-        return Position { x: 0, y: 0 };
-    }
-}
+// impl Position {
+//     fn new(x: u16, y: u16) -> Position {
+//         return Position { x, y };
+//     }
+
+//     fn zeros() -> Position {
+//         return Position { x: 0, y: 0 };
+//     }
+// }
 
 enum CursorStyle {
     Blinking,
@@ -230,14 +232,7 @@ fn remove_char() {
 }
 
 
-
-
-
 pub fn get_password() -> String {
-
     println!("Enter Password");
-
-    let password = get_text(false);
-
-    return password;
+    get_text(false)
 }
